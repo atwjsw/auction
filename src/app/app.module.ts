@@ -3,11 +3,25 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { MenuComponent } from './menu/menu.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ContentComponent } from './content/content.component';
+import { FooterComponent } from './footer/footer.component';
+import { StockManageComponent } from './stock/stock-manage/stock-manage.component';
+import { StarsComponent } from './stars/stars.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    MenuComponent,
+    SidebarComponent,
+    ContentComponent,
+    FooterComponent,
+    StockManageComponent,
+    StarsComponent
   ],
   imports: [
     BrowserModule
