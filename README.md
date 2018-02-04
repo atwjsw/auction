@@ -33,3 +33,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Routing Feature change #3 from Feature/Routing branch
 
 ## Routing2 Feature change #1 from Feature/Routing branch
+
+## Routing2 Feature change #2 from Feature/Routing branch
