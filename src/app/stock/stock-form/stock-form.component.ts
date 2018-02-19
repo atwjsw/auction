@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Stock} from "../stock-manage/stock-manage.component";
 import {StockService} from "../stock.service";
+import {Stock} from "../stock.service";
 
 @Component({
   selector: 'app-stock-form',
