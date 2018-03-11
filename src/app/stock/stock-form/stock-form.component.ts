@@ -34,7 +34,7 @@ export class StockFormComponent implements OnInit {
           desc: data.desc,
           categories: [
             this.stock.categories.indexOf(this.categories[0]) != -1,
-            this.stock.categories.indexOf(this.categories[1]) != -1
+            this.stock.categories.indexOf(this.categories[1]) != -1,
             this.stock.categories.indexOf(this.categories[2]) != -1
           ]
         })
