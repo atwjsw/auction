@@ -13,7 +13,7 @@ export class StockFormComponent implements OnInit {
 
   formModel: FormGroup;
 
-  stock: Stock;
+  stock: Stock = new Stock(0, "", 0, 0, "", []);
 
   categories = ["IT", "互联网","金融"];
 
@@ -24,19 +24,36 @@ export class StockFormComponent implements OnInit {
 
   ngOnInit() {
     let stockId = this.routeInfo.snapshot.params["id"];
-    this.stock = this.stockService.getStock(stockId);
+    this.stockService.getStock(stockId).subscribe(
+      data => {
+        this.stock = data;
+        // 获取后台数据后需要更新表单
+        this.formModel.reset({
+          name: data.name,
+          price: data.price,
+          desc: data.desc,
+          categories: [
+            this.stock.categories.indexOf(this.categories[0]) != -1,
+            this.stock.categories.indexOf(this.categories[1]) != -1
+            this.stock.categories.indexOf(this.categories[2]) != -1
+          ]
+        })
+      }
+    )
+    //this.stock = this.stockService.getStock(stockId);
     //this.stock = new Stock(1, "第一只股票", 1.99, 3.5, "这是第一只股票，是我在学习慕课网Angular入门实战时创建的",["IT", "互联网"]);
 
     let fb = new FormBuilder();
+    // 首次渲染页面要赋初始值
     this.formModel = fb.group(
       {
-        name: [this.stock.name, [Validators.required, Validators.minLength(3)]],
-        price: [this.stock.price, [Validators.required, Validators.minLength(3)]],
-        desc: [this.stock.desc],
+        name: ['', [Validators.required, Validators.minLength(3)]],
+        price: ['', [Validators.required, Validators.minLength(3)]],
+        desc: [''],
         categories: fb.array([
-          new FormControl(this.stock.categories.indexOf(this.categories[0]) != -1),
-          new FormControl(this.stock.categories.indexOf(this.categories[1]) != -1),
-          new FormControl(this.stock.categories.indexOf(this.categories[2]) != -1)
+          new FormControl(false),
+          new FormControl(false),
+          new FormControl(false)
         ], this.categoriesSelectValidator)
       }
     )
